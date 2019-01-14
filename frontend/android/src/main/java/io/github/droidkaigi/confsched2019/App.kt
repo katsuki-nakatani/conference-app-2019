@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import io.fabric.sdk.android.Fabric
+import io.github.droidkaigi.confsched2019.announcement.ui.subscribeAnnouncementTopic
 import io.github.droidkaigi.confsched2019.di.createAppComponent
 import io.github.droidkaigi.confsched2019.ext.android.changedForever
 import io.github.droidkaigi.confsched2019.system.actioncreator.SystemActionCreator
@@ -34,6 +35,7 @@ open class App : DaggerApplication() {
         setupFirestore()
         systemStore.systemProperty.changedForever {
             // listening
+            subscribeAnnouncementTopic(it.lang)
         }
         systemActionCreator.setupSystem()
     }
